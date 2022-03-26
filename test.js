@@ -9,12 +9,17 @@ const asyncIterator = async (readeble) => {
         console.log(chank)
         const translateText = await translate(chank, { from: 'ru', to: 'en' })
         console.log(translateText)
-        fs.writeFile('result.txt', translateText, err => {
-            console.log(err)
-            return new Promise((resolve, reject) => {
-                resolve(translateText)
+        const writeFile = (filename, translateTo) => {
+            new Promise((resolve, reject) => {
+                fs.writeFile(filename, translateTo, (err, data) => {
+                    if (err) {
+                        return reject(err)
+                    }
+                    resolve(data)
+                })
             })
-        })
+        }
+        writeFile('result.txt', translateText)
     }
 }
 
