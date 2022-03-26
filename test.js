@@ -2,7 +2,6 @@ const { translate } = require('free-translate');
 const fs = require('fs')
 
 const readStream = fs.createReadStream('./input.txt')
-const writeStream = fs.createWriteStream('en.translate.txt')
 
 const asyncIterator = async (readeble) => {
     for await (const chank of readeble) {
